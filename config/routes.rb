@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'user/index'
+  get 'user/register'
   get 'site/index'
   get 'site/about'
   get 'site/help'
