@@ -1,17 +1,8 @@
 <h2>Register</h2>
-<%= form_for user do |form| %>
+<%= form_for :user do |form| %>
 <fieldset>
 <legend>Enter Your Details</legend>
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= error_messages_for "user" %>
 <div class="form_row">
 <label for="screen_name">Screen name:</label>
 <%= form.text_field :screen_name,
@@ -34,4 +25,5 @@
 <%= submit_tag "Register!", :class => "submit" %>
 </div>
 </fieldset>
+
 <% end %>

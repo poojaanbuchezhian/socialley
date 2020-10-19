@@ -12,6 +12,7 @@ class UserController < ApplicationController
         if @user.save
           render :text => "User created!"
         end
+        
     end
 end
 end
