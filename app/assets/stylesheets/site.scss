@@ -82,12 +82,13 @@ padding-bottom: .5em;
 .submit {
 margin-left: 15em;
 }
-.fieldWithErrors {
+.field_with_errors {
 margin: 2px;
 padding: 2px;
 background-color: red;
 display: table;
 }
+
 #errorExplanation {
 border: 2px solid red;
 padding: 7px;
@@ -119,4 +120,13 @@ border-top: 1px dashed black;
 background: #ccc;
 margin: 0;
 padding: 0.5em;
+}
+/*Flask Notice Style*/
+#notice {
+border: 1px solid green;
+padding: 1em;
+margin: 1em;
+margin-bottom: 2em;
+background-color: lightgray;
+font: bold smaller sans-serif;
 }
