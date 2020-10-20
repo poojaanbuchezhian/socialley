@@ -1,27 +1,40 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<title><%= @title %></title>
-<%= stylesheet_link_tag "site" %>
-</head>
-<body>
-<div id="whole_page">
-<div id="header">RailsSpace</div>
-<div id="nav">
-<%= nav_link "Home", "site" %> |
-<%= nav_link "About Us", "site", "about" %> |
-<%= nav_link "Help", "site", "help" %> |
-<%= nav_link "Register", "user", "register" %>
-</div>
-<div id="content">
-<% if flash[:notice] -%>
-<div id="notice"><%= flash[:notice] %></div>
-<% end -%>
-<%= yield %>
-</div>
-<%#<% if ENV["RAILS_ENV"] == "development" %>
-<%#<%= debug(params) %>
-<%#<% end %>
-</div>
-</body>
+  <head>
+    <title><%= @title %></title>
+    <%= stylesheet_link_tag "site" %>
+  </head>
+  <body>
+    <div id="whole_page">
+      <div id="header">Socialley</div>
+        <div id="nav">
+          <span style="float: right">
+            <% if  logged_in? -%>
+              <%= nav_link "Hub", "user", "index" %> |
+              <%= nav_link "Logout", "user", "logout" %>
+            <% else -%>
+              <%= nav_link "Register", "user", "register" %> |
+              <%= nav_link "Login", "user", "login" %>
+            <% end -%>
+          </span>
+          <%= nav_link "Home", "site" %> |
+          <%= nav_link "About Us", "site", "about" %> |
+          <%= nav_link "Help", "site", "help" %> |
+        </div>
+        <div id="content">
+          <% if flash[:notice] -%>
+            <div id="notice">
+              <%= flash[:notice] %>
+            </div>
+          <% end -%>
+          <%= yield %>
+        </div>
+          <% if ENV["RAILS_ENV"] == "development" %>
+            <%=debug(params) %>
+            <%=debug(session) %>
+            <%= debug(request.env) %>
+            <%= debug(request) %>
+          <% end %>
+    </div>
+  </body>
 </html>

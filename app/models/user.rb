@@ -10,7 +10,7 @@ class User < ApplicationRecord
   SCREEN_NAME_SIZE = 20
   PASSWORD_SIZE = 10
   EMAIL_SIZE = 30
-  
+
   validates_uniqueness_of :screen_name, :email
   validates_length_of :screen_name, :within => SCREEN_NAME_RANGE
   validates_length_of :password, :within => PASSWORD_RANGE
@@ -22,4 +22,13 @@ class User < ApplicationRecord
   validates_format_of :email,
                       :with => /\A[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i,
                       :message => "must be a valid email address"
+  def login!(session)
+      session[:user_id] = id
+  end
+  def self.logout!(session)
+    session[:user_id] = nil
+  end
+  def clear_password!
+    self.password = nil
+  end
 end

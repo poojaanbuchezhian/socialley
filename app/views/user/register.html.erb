@@ -6,20 +6,20 @@
       <div class="form_row">
         <label for="screen_name">Screen name:</label>
         <%= form.text_field :screen_name,
-        :size => User::SCREEN_NAME_SIZE,
-        :maxlength => User::SCREEN_NAME_MAX_LENGTH %>
+                            :size => User::SCREEN_NAME_SIZE,
+                            :maxlength => User::SCREEN_NAME_MAX_LENGTH %>
       </div>
       <div class="form_row">
         <label for="email">Email:</label>
         <%= form.text_field :email,
-        :size => User::EMAIL_SIZE,
-        :maxlength => User::EMAIL_MAX_LENGTH %>
+                            :size => User::EMAIL_SIZE,
+                            :maxlength => User::EMAIL_MAX_LENGTH %>
       </div>
       <div class="form_row">
         <label for="password">Password:</label>
         <%= form.password_field :password,
-        :size => User::PASSWORD_SIZE,
-        :maxlength => User::PASSWORD_MAX_LENGTH
+                                :size => User::PASSWORD_SIZE,
+                                :maxlength => User::PASSWORD_MAX_LENGTH
          %>
       </div>
       <div class="form_row">
