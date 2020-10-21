@@ -1,3 +1,4 @@
+require 'digest/sha1'
 class UserController < ApplicationController
   include ApplicationHelper
   ActionController::Parameters.permit_all_parameters = true
@@ -12,6 +13,9 @@ class UserController < ApplicationController
   end
   private def param_posted?(symbol)
     request.post? and params[symbol]
+  end
+  private def remember_me_string
+    cookies[:remember_me] || "0"
   end
   def index
     @title = "Socialley User Hub"
@@ -42,11 +46,14 @@ class UserController < ApplicationController
   end
   def login
     @title = "Log in to Socialley"
-    if param_posted?(:user)
+    if request.get?
+      @user = User.new(:remember_me => remember_me_string)
+    elsif param_posted?(:user)
       @user = User.new(params[:user])
       user = User.find_by_screen_name_and_password(@user.screen_name,@user.password)
       if user
         user.login!(session)
+        @user.remember_me? ? user.remember!(cookies) : user.forget!(cookies)
         flash[:notice] = "User #{user.screen_name} logged in!"
         redirect_to_forwarding_url
       else
@@ -56,7 +63,7 @@ class UserController < ApplicationController
     end
   end
   def logout
-    User.logout!(session)
+    User.logout!(session,cookies)
     flash[:notice] = "Logged out"
     redirect_to :action => "index", :controller => "site"
   end
