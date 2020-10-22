@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'user/login'
   post 'user/login'
   get 'user/logout'
+  get 'user/edit'
+  post 'user/edit'
   get 'site/index'
   get 'site/about'
   get 'site/help'

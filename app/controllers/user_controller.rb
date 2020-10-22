@@ -2,7 +2,7 @@ require 'digest/sha1'
 class UserController < ApplicationController
   include ApplicationHelper
   ActionController::Parameters.permit_all_parameters = true
-  before_action :protect, :only => :index
+  before_action :protect, :only =>  [:index, :edit]
   private def protect
     unless logged_in?
       session[:protected_page] = request.url
@@ -19,9 +19,16 @@ class UserController < ApplicationController
   end
   def index
     @title = "Socialley User Hub"
+    @user = User.find(session[:user_id])
   end
   private def user_params
     params.require(:user).permit(:screen_name,:email,:password)
+  end
+  private def try_to_update(user, attribute)
+    if user.update_attributes(params[:user])
+      flash[:notice] = "User #{attribute} updated."
+      redirect_to :action => "index"
+    end
   end
   def redirect_to_forwarding_url
     if (redirect_url = session[:protected_page])
@@ -66,5 +73,23 @@ class UserController < ApplicationController
     User.logout!(session,cookies)
     flash[:notice] = "Logged out"
     redirect_to :action => "index", :controller => "site"
+  end
+  def edit
+    @title = "Edit basic info"
+    @user = User.find(session[:user_id])
+    if param_posted?(:user)
+      attribute = params[:attribute]
+      case attribute
+      when "email"
+        try_to_update @user, attribute
+      when "password"
+        if @user.correct_password?(params)
+          try_to_update @user, attribute
+        else
+          @user.password_errors(params)
+        end
+      end
+    end
+    @user.clear_password!
   end
 end
