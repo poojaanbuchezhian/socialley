@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_105231) do
+ActiveRecord::Schema.define(version: 2020_10_24_054942) do
+
+  create_table "faqs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "bio"
+    t.text "skillz"
+    t.text "schools"
+    t.text "companies"
+    t.text "music"
+    t.text "movies"
+    t.text "television"
+    t.text "magazines"
+    t.text "books"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "session_id", null: false
@@ -19,6 +34,20 @@ ActiveRecord::Schema.define(version: 2020_10_21_105231) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
+  create_table "specs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "first_name", default: ""
+    t.string "last_name", default: ""
+    t.string "gender"
+    t.date "birthdate"
+    t.string "occupation", default: ""
+    t.string "city", default: ""
+    t.string "state", default: ""
+    t.string "zip_code", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|

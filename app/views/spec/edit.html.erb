@@ -1,0 +1,57 @@
+<%= form_for :spec do |form| %>
+<fieldset>
+  <legend><%= @title %></legend>
+  <%= error_messages_for 'spec' %>
+  <div class="form_row">
+    <label for="first_name">First name:</label>
+    <%= form.text_field :first_name,
+                        :size => HTML_TEXT_FIELD_SIZE,
+                        :maxlength => DB_STRING_MAX_LENGTH %>
+  </div>
+  <div class="form_row">
+    <label for="last_name">Last name:</label>
+    <%= form.text_field :last_name,
+                        :size => HTML_TEXT_FIELD_SIZE,
+                        :maxlength => DB_STRING_MAX_LENGTH %>
+  </div>
+
+  <div class="form_row">
+    <label for="gender">Gender:</label>
+    <%= radio_button :spec, :gender, "Male" %> Male
+    <%= radio_button :spec, :gender, "Female" %> Female
+  </div>
+  <div class="form_row">
+    <label for="birthdate">Birthdate:</label>
+    <%= date_select :spec, :birthdate,
+                    :start_year => Spec::START_YEAR,
+                    :end_year => Time.now.year,
+                    :include_blank => true,
+                    :order => [:month, :day, :year] %>
+  </div>
+  <div class="form_row">
+    <label for="occupation">Occupation:</label>
+    <%= form.text_field :occupation,
+                        :size => HTML_TEXT_FIELD_SIZE,
+                        :maxlength => DB_STRING_MAX_LENGTH %>
+  </div>
+  <div class="form_row">
+    <label for="city">City:</label>
+    <%= form.text_field :city,
+                        :size => HTML_TEXT_FIELD_SIZE,
+                        :maxlength => DB_STRING_MAX_LENGTH %>
+  </div>
+  <div class="form_row">
+    <label for="state">State:</label>
+    <%= form.text_field :state,
+                        :size => HTML_TEXT_FIELD_SIZE,
+                        :maxlength => DB_STRING_MAX_LENGTH %>
+  </div>
+  <div class="form_row">
+    <label for="zip_code">Zip Code:</label>
+    <%= form.text_field :zip_code,
+                        :size => Spec::ZIP_CODE_LENGTH,
+                        :maxlength => DB_STRING_MAX_LENGTH %>
+  </div>
+  <%= submit_tag "Update", :class => "submit" %>
+</fieldset>
+<% end %>

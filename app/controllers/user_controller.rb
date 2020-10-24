@@ -2,24 +2,19 @@ require 'digest/sha1'
 class UserController < ApplicationController
   include ApplicationHelper
   ActionController::Parameters.permit_all_parameters = true
-  before_action :protect, :only =>  [:index, :edit]
-  private def protect
-    unless logged_in?
-      session[:protected_page] = request.url
-      flash[:notice] = "Please log in first"
-      redirect_to :action => "login"
-      return false
-    end
-  end
-  private def param_posted?(symbol)
-    request.post? and params[symbol]
-  end
+  helper :profile
+  before_action :protect, :only =>  [:index, :edit,  :edit_password]
+
   private def remember_me_string
     cookies[:remember_me] || "0"
   end
   def index
     @title = "Socialley User Hub"
     @user = User.find(session[:user_id])
+    @user.spec ||= Spec.new
+    @spec = @user.spec
+    @user.faq ||= Faq.new
+    @faq = @user.faq
   end
   private def user_params
     params.require(:user).permit(:screen_name,:email,:password)
