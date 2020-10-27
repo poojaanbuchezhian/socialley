@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'community/index'
+  get 'community/browse'
+  get 'community/search'
   get 'faq/index' , to: 'user#index'
   get 'faq/edit'
   post 'faq/edit'
