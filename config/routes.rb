@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/' , to: 'site#index'
   get 'community/index'
   get 'community/browse'
   get 'community/search'

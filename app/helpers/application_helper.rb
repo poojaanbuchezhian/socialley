@@ -12,4 +12,13 @@ module ApplicationHelper
       form_field = form.text_field field, :size => size, :maxlength => maxlength
       content_tag("div", "#{label}#{form_field}", :class => "form_row")
   end
+  def nav_link(text, controller, action="index")
+    link_to_unless_current text, :id => nil,
+    :action => action,
+    :controller => controller
+  end
+  def paginated?
+    @pages and @pages.length > 1
+  end
+
 end

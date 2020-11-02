@@ -72,5 +72,8 @@ class User < ApplicationRecord
     valid?
     errors.add(:current_password, "is incorrect")
   end
+  def name
+    spec.full_name.or_else(screen_name)
+  end
 
 end
