@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_054942) do
+ActiveRecord::Schema.define(version: 2020_11_05_125204) do
 
   create_table "faqs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id", default: 0, null: false
     t.text "bio"
     t.text "skillz"
     t.text "schools"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2020_10_24_054942) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "geo_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
+    t.string "zip_code"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.index ["zip_code"], name: "zip_code_optimization"
+  end
+
   create_table "sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -37,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_054942) do
   end
 
   create_table "specs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id", default: 0, null: false
     t.string "first_name", default: ""
     t.string "last_name", default: ""
     t.string "gender"

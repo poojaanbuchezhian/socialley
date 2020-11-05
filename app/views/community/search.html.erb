@@ -1,2 +1,5 @@
-<h1>Community#search</h1>
-<p>Find me in app/views/community/search.html.erb</p>
+<%= render :partial => "search_form" %>
+<% if @invalid %>
+  <p>No relevant user</p>
+<% end %>
+<%= render :partial => "user_table" %>

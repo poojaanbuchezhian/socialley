@@ -22,7 +22,7 @@ gem 'activerecord-session_store'
 gem 'yaml_db'
 gem "will_paginate", "~> 3.1.7"
 
-
+gem 'acts_as_indexed'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

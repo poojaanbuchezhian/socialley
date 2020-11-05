@@ -1,6 +1,6 @@
 class Faq < ApplicationRecord
   belongs_to :user
-
+  acts_as_indexed :fields => ['bio', 'skillz', 'schools', 'companies', 'music', 'movies', 'television', 'books', 'magazines']
   QUESTIONS = %w(bio skillz schools companies music movies television books magazines)
   FAVORITES = %w(skillz schools companies music movies television books magazines)
   TEXT_ROWS = 10

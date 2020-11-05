@@ -3,16 +3,16 @@
 		<tr class="header">
 			<th>Name</th> <th>Age</th> <th>Gender</th> <th>Location</th>
 		</tr>
-    <%= will_paginate @specs %>
-		<% @users.each do |user| %>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<td>
-					<%= link_to user.name, :controller => "profile", :action => "show" , :screen_name => user.screen_name  %>
-				</td>
-				<td><%= user.spec.age %></td>
-				<td><%= user.spec.gender %></td>
-				<td><%= user.spec.location %></td>
-			</tr>
-		<% end %>
+    <%= will_paginate @specs || @users %>
+			<% @users.each do |user| %>
+				<tr class="<%= cycle('odd', 'even') %>">
+					<td>
+						<%= link_to user.name, :controller => "profile", :action => "show" , :screen_name => user.screen_name  %>
+					</td>
+					<td><%= user.spec.age %></td>
+					<td><%= user.spec.gender %></td>
+					<td><%= user.spec.location %></td>
+				</tr>
+				<% end %>
 	</table>
 <% end %>
