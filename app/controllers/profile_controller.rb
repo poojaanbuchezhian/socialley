@@ -1,4 +1,5 @@
 class ProfileController < ApplicationController
+  helper :avatar
   def index
     @title = "Socialley Profiles"
   end

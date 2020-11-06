@@ -32,6 +32,9 @@ class User < ApplicationRecord
   def login!(session)
       session[:user_id] = id
   end
+  def avatar
+    Avatar.new(self)
+  end
   def self.logout!(session,cookies)
     session[:user_id] = nil
     cookies.delete(:authorization_token)

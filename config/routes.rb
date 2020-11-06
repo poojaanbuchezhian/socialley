@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'avatar/index'
+  get 'avatar/upload'
+  post 'avatar/upload'
+  get 'avatar/delete'
   get '/' , to: 'site#index'
   get 'community/index'
   get 'community/browse'

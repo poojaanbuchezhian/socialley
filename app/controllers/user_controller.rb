@@ -2,7 +2,7 @@ require 'digest/sha1'
 class UserController < ApplicationController
   include ApplicationHelper
   ActionController::Parameters.permit_all_parameters = true
-  helper :profile
+  helper :profile,  :avatar
   before_action :protect, :only =>  [:index, :edit,  :edit_password]
 
   private def remember_me_string
