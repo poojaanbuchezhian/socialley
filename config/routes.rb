@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'email/remind'
+  post 'email/remind'
+  get 'email/correspond/:screen_name' , to: 'email#correspond'
+  post 'email/correspond/:screen_name' , to: 'email#correspond'
   get 'avatar/index'
   get 'avatar/upload'
   post 'avatar/upload'

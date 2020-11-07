@@ -38,8 +38,8 @@ class UserController < ApplicationController
     if param_posted?(:user)
         @user = User.new(user_params)
         if @user.save
-          @user.login!(session)
           flash[:notice] = "User #{@user.screen_name} created!"
+          @user.login!(session)
           redirect_to_forwarding_url
         else
             @user.clear_password!

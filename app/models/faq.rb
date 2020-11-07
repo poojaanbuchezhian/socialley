@@ -8,7 +8,7 @@ class Faq < ApplicationRecord
 
   validates_length_of QUESTIONS, :maximum => DB_TEXT_MAX_LENGTH
 
-  def initialize
+  def self.initialize
     super
     QUESTIONS.each do |question|
       self[question] = ""
