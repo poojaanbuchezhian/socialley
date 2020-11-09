@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :pending_friends, -> { where "status = 'pending'","order('created_at')"},
           :through => :friendships,
           :source => :friend
+  has_many :comments, -> { order 'created_at desc'}, dependent: :destroy
   acts_as_indexed :fields => ['screen_name', 'email']
   attr_accessor :remember_me
   attr_accessor :current_password

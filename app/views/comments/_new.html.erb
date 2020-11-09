@@ -1,0 +1,7 @@
+<%= form_for [@post.blog, @post, @comment], remote: true do |form| %>
+	<fieldset>
+		<legend>New Comment</legend>
+		<%= form.text_area :body, :rows => 10, :cols => 40 %>
+		<%= form.submit "Create", :disable_with => 'Saving...' %>
+	</fieldset>
+<% end %>
