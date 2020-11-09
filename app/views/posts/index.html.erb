@@ -1,4 +1,4 @@
-<h2>Your Blog Posts</h2>
+<h2>Blog Posts</h2>
 <p class="edit_link">
 <%= link_to 'Add a new post', new_blog_post_path(@blog) %>
 </p>
@@ -7,12 +7,13 @@
 	<div class="post">
 		<div class="post_title">
 	<%= sanitize post.title %>
+	<br>
+	Blog owner :
+<%= link_to post.blog.user.screen_name, url_for(:controller => "profile", :action => "show" , :screen_name => post.blog.user.screen_name) %>
 	<% unless hide_edit_links? %>
 		<span style="float:right">
-			<%= link_to_unless_current 'Show', blog_post_path(post.blog, post) %> |
-			<%= link_to_unless_current 'Edit', edit_blog_post_path(post.blog, post) %> |
-			<%= link_to_unless_current 'Destroy', blog_post_path(post.blog, post),
-						:confirm => 'Are you sure?', :method => 'delete' %>
+			<%= link_to_unless_current 'Show', blog_post_path(post.blog, post) %>
+
 		</span>
 	<% end %>
 		</div>

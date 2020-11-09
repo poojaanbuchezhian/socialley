@@ -30,7 +30,7 @@
   <% @user.requested_friends.each do |requester| %>
   <tr>
   <td><%= link_to thumbnail_tag(requester), url_for(:controller => "profile", :action => "show" , :screen_name => requester.screen_name) %></td>
-  <td><%= link_to requester.name, url_for(:controller => "profile", :action => "show" , :screen_name => requester.screen_name) %></td>
+  <td><%= link_to requester.screen_name, url_for(:controller => "profile", :action => "show" , :screen_name => requester.screen_name) %></td>
   <td>
   <%= link_to "Accept",
   :controller => "friendship", :action => "accept",
@@ -39,7 +39,7 @@
   { :controller => "friendship", :action => "decline",
   :screen_name => requester.screen_name },
   :confirm =>
-  "Really decline friendship with #{requester.name}?" %>
+  "Really decline friendship with #{requester.screen_name}?" %>
   </td>
   </tr>
   <% end %>
@@ -54,7 +54,7 @@
   <tr>
   <td><%= link_to thumbnail_tag(pending_friend),
 url_for(:controller => "profile", :action => "show" , :screen_name => pending_friend.screen_name) %></td>
-  <td><%= link_to pending_friend.name,
+  <td><%= link_to pending_friend.screen_name,
   url_for(:controller => "profile", :action => "show" , :screen_name => pending_friend.screen_name) %></td>
   <td><%= link_to "Cancel request",
   { :controller => "friendship", :action => "cancel",

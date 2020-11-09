@@ -1,14 +1,9 @@
 <div class="post">
 	<div class="post_title">
 		<%= sanitize @post.title %>
-		<% unless hide_edit_links? %>
-			<span style="float:right">
-				<%= link_to_unless_current 'Show', blog_post_path(@post.blog, @post) %> |
-				<%= link_to_unless_current 'Edit', edit_blog_post_path(@post.blog, @post) %> |
-				<%= link_to_unless_current 'Destroy', blog_post_path(@post.blog, @post), method: :delete, data: { confirm: 'Are you sure?'}, format: 'js'  %>
-
-			</span>
-		<% end %>
+		<br>
+		Blog owner :
+		<%= link_to @post.blog.user.screen_name, url_for(:controller => "profile", :action => "show" , :screen_name => @post.blog.user.screen_name) %>
 	</div>
 	<div class="post-body">
 		<%= sanitize @post.body %>
