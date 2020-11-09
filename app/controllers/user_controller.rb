@@ -11,10 +11,7 @@ class UserController < ApplicationController
   def index
     @title = "Socialley User Hub"
     @user = User.find(session[:user_id])
-    @user.spec ||= Spec.new
-    @spec = @user.spec
-    @user.faq ||= Faq.new
-    @faq = @user.faq
+    make_profile_vars
   end
   private def user_params
     params.require(:user).permit(:screen_name,:email,:password)

@@ -1,4 +1,5 @@
 class CommunityController < ApplicationController
+  before_action :protect
   helper :profile
   def index
     @title = "Community"

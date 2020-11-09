@@ -2,6 +2,16 @@ require 'digest/sha1'
 class User < ApplicationRecord
   has_one :spec
   has_one :faq
+  has_one :blog
+  has_many :friendships
+  has_many :friends, -> { where "status = 'accepted'","order('screen_name')"},
+           through: :friendships
+ has_many :requested_friends, -> { where "status = 'requested'","order('created_at')"},
+            :through => :friendships,
+            :source => :friend
+  has_many :pending_friends, -> { where "status = 'pending'","order('created_at')"},
+          :through => :friendships,
+          :source => :friend
   acts_as_indexed :fields => ['screen_name', 'email']
   attr_accessor :remember_me
   attr_accessor :current_password

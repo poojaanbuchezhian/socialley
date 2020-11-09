@@ -21,4 +21,17 @@ class UserMailer < ApplicationMailer
     @from = 'Socialley <do-not-reply@socialley.com>'
     mail(to: @recipients, subject: @subject, from: @from)
   end
+  def friend_request
+    @user=params[:user]
+    @friend =params[:friend]
+    @user_url = params[:user_url]
+    @accept_url = params[:accept_url]
+    @decline_url = params[:decline_url]
+    @subject = 'New friend request at Socialley.com'
+    @from = 'Socialley <do-not-reply@socialley.com>'
+    @recipients = @friend.email
+    @body = {}
+    @body["user"] = @user
+    mail(to: @recipients, subject: @subject, from: @from)
+  end
 end

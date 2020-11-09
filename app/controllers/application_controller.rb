@@ -20,4 +20,10 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
+  def make_profile_vars
+    @spec = @user.spec ||= Spec.new
+    @faq = @user.faq ||= Faq.new
+    @blog = @user.blog ||= Blog.new
+    @posts=@blog.posts.paginate(:page => params[:page], per_page: 3)
+  end
 end

@@ -1,0 +1,33 @@
+<div id="blog">
+	<p>
+		Found <%= pluralize(@posts.total_entries, "blog post") %>.
+
+    <%= will_paginate @posts %>
+    	<% @posts.each do |post| %>
+    	<div class="post">
+    		<div class="post_title">
+    	<%= sanitize post.title %>
+    	<% unless hide_edit_links? %>
+    		<span style="float:right">
+    			<%= link_to_unless_current 'Show', blog_post_path(post.blog, post) %> |
+    			<%= link_to_unless_current 'Edit', edit_blog_post_path(post.blog, post) %> |
+    			<%= link_to_unless_current 'Destroy', blog_post_path(post.blog, post), method: :delete, data: { confirm: 'Are you sure?'}, format: 'js'  %>
+
+    		</span>
+    	<% end %>
+    		</div>
+    		<div class="post-body">
+    			<%= sanitize post.body %>
+    		</div>
+    		<div class="post_creation_date">
+    			Posted <%= time_ago_in_words post.created_at %> ago
+    			<% if post.updated_at != post.created_at %>
+    				<br />Modified <%= time_ago_in_words post.updated_at %> ago
+    			<% end %>
+    		</div>
+
+    	</div>
+    	<% end %>
+
+	</p>
+</div>

@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
+  resources :blogs do
+    resources :posts
+  end
   get 'email/remind'
   post 'email/remind'
+  get 'friendship/create/:screen_name' , to: 'friendship#create'
+  post 'friendship/create/:screen_name' , to: 'friendship#create'
+  get 'friendship/accept/:screen_name', to: 'friendship#accept'
+  get 'friendship/decline/:screen_name', to: 'friendship#decline'
+  get 'friendship/cancel/:screen_name', to: 'friendship#cancel'
+  get 'friendship/delete/:screen_name', to: 'friendship#delete'
+  post 'friendship/accept/:screen_name', to: 'friendship#accept'
+  post 'friendship/decline/:screen_name', to: 'friendship#decline'
+  post 'friendship/cancel/:screen_name', to: 'friendship#cancel'
+  post 'friendship/delete/:screen_name', to: 'friendship#delete'
   get 'email/correspond/:screen_name' , to: 'email#correspond'
   post 'email/correspond/:screen_name' , to: 'email#correspond'
   get 'avatar/index'

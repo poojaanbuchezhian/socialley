@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
-  helper :avatar
+  before_action :protect
+  helper :avatar,  :friendship
   def index
     @title = "Socialley Profiles"
   end
@@ -11,8 +12,7 @@ class ProfileController < ApplicationController
     @logged_in_user = User.find(session[:user_id]) if logged_in?
     if @user
       @title = "My Socialley Profile for #{screen_name}"
-      @spec = @user.spec ||= Spec.new
-      @faq = @user.faq ||= Faq.new
+      make_profile_vars
     else
       flash[:notice] = "No user #{screen_name} at Socialley!"
       redirect_to :action => "index"
